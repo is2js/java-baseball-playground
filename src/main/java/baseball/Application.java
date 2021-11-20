@@ -1,7 +1,9 @@
 package baseball;
 
+import baseball.domain.Judgement;
 import baseball.domain.NumberGenerator;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,8 +14,15 @@ import java.util.List;
  */
 public class Application {
     public static void main(String[] args) {
-        NumberGenerator generator = new NumberGenerator();
-        List<Integer> numbers = generator.createRandomNumbers();
-        System.out.println(numbers); // [4, 7, 7]
+//        NumberGenerator generator = new NumberGenerator();
+//        List<Integer> numbers = generator.createRandomNumbers();
+//        System.out.println(numbers); // [4, 7, 7]
+
+        //4. new Judgement();
+        Judgement judgement = new Judgement();
+        // -> 파라미터로 List를 넣는 방법은 Arrays.asList( , ,, );형태로 만든다.
+        int correctCount = judgement.correctCount(Arrays.asList(1, 5, 3), Arrays.asList(1, 2, 3));
+        System.out.println(correctCount);
+
     }
 }
