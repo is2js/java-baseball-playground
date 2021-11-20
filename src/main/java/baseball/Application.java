@@ -15,11 +15,8 @@ import java.util.List;
  */
 public class Application {
     public static void main(String[] args) {
-        // 6. 테스트
         Referee referee = new Referee();
-        String result = referee.compare(Arrays.asList(1, 2, 3), Arrays.asList(3, 1, 2));
+        String result = referee.compare(Arrays.asList(1, 2, 3), Arrays.asList(4, 5, 6));
         System.out.println(result);
-        // -> 0 볼 3 스트라이크 -> 7. 가서 고치기(나중에)
-
     }
 }
