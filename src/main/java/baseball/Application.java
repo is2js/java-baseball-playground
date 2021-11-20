@@ -10,5 +10,6 @@ public class Application {
         System.out.println(teacher.add(1000, 2000));
 
         System.out.println(Calculator.shareResult);
+        System.out.println(Calculator.SHARE_BIRTHDAY);
     }
 }
