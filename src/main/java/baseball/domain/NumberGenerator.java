@@ -6,17 +6,26 @@ import java.util.Random;
 
 public class NumberGenerator {
     public List<Integer> createRandomNumbers() {
-        //1. 자바에는 Random이라는 녀석이 있으며, new Random()으로 객체 만들고 , nextInt()로 뽑아 쓰면 된다.
-        // - 뽑을 때 바운더리를 지정해줄 수 있다. 0~ n-1까지 -> 우리는 1~9가 필요하니.. 0~8을 만든 뒤 +1을 하면 된다. -> n-1까지 만드니  9를 대입한다.
-        //int number = new Random().nextInt(9) + 1;
-        // 3번 뽑는다. -> 각 수마다 컬렉션에 담아야한다. -> 리스트.add()로 담으면 된다.
-        List<Integer> numbers = new ArrayList<>(); // ArrayList는 List의 실제클래스라고 보면 된다.
-        for (int i = 0; i < 3; i++) {
+        List<Integer> numbers = new ArrayList<>();
+        // 1. 담을때 중복을 제거하고 담으면, 서다수 3개를 뽑는 것이 된다.
+        // ** 중복을 제거하는 방법 **
+        // -> 매번 랜덤으로 뽑으면서 & if로 중복을 확인하며 & 반복횟수는 정해지지 않고(for->while) -> 3개가 담길때까지 계속 돌려야한다.
+        // 1) 담길때까지 -> for문으로 해결안됨. -> while
+        // - 조건변수 대신 List는 List.size()로 매번 갯수를 확인할 수 있다.
+        // -> 갯수가 3개면.. 진입하면 안된다..  < 3...( 3개가 되기 직전까지 add임.. 3 미포함임.. 3일 때 드가지말고 탈출해야됨.)
+        // my) 갯수를 whlie에 돌릴 때는, countNumber 때 탈출해야하므로  size == N일 때 탈출 -> size < N일때가지만 돈다.
+        while (numbers.size() < 3 ) {
             int number = new Random().nextInt(9) + 1;
+            //2) List.contains로 이미 포함하면 건너띈다.
+            if (numbers.contains(number)) {
+                continue;
+            }
             numbers.add(number);
         }
-        // 3번 뽑아서 담긴 놈을 return한다.
-//        return null;
-        return numbers; // 2. -> 생성한 기능은 [Application.java]에서 인스턴스화해서 사용한다.
+//        for (int i = 0; i < 3; i++) {
+//            int number = new Random().nextInt(9) + 1;
+//            numbers.add(number);
+//        }
+        return numbers;
     }
 }
