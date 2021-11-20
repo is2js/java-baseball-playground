@@ -1,26 +1,14 @@
 package baseball.domain;
 
-
-import baseball.Application;
-
 public class Calculator {
-    // 1. 클래스가 기능의 모음집인데, [결과값을 반환하는 기능들]의 결과값을 (객체단위로) 관리하게 할 수 도 있다.
-    // - 지금까지는 변수를 함수(메서드)안에서만 있었다. -> 여기서는 메서드범위가 아닌 클래스 단위로 관리하고 싶어졌다.
-    // - my) 클래스가 관리하는 변수는 초기화는 나중에 생성자 or setter(혹은 일반 인스턴스메소드의 내부에서 결과를 받을 수 도)에서 할 수 있다.
-    public int result = 0; // 2. 메서드와 다르게 public으로 변수를 열어주면, 밖에서도 접근된다. but static이 없으면 인스턴스 변수임.
-    // my) public 변수 -> 객체.변수로 접근 가능해짐.
-    // my) public statc 클래스변수 -> 유틸용 변수.. 객체마다가 아닌, 메모리에 한번 올라가 생성되면, 모든 객체, 메소드가 결과값을 공유됨.
+    public static int shareResult = 0; // 클래스변수. static
+    public int result = 0; // 인스턴스변수.
 
     public Calculator() {
     }
     public int add(int number1, int number2) {
-        //3. setter가 굳이 아니더라도, 객체변수에 할당해 줄 수 있다.
+        shareResult = number1 + number2;
         result = number1 + number2;
-        // 4. 선언과 동시에 받는다면? 클래스(객체)단위로 관리가 안되고 없어진다.
-        // -> 클래스에서 객체변수로 선언 해줘야 -> 메소드결과값은 메소드(기능)내부에서 받아줄 수 있다.
-        // my) 메소드 내부에서 발생하는 값을  -> 객체단위 유지하고 싶으면 -> 한단계 위인 class객체변수로 만들고 -> 받는 것만 메소드 내에서
-        // -> 밖에서도 살 수 있게~~ + 초기화 해줘도 괜찮다.
-        // -> 5.의 메인메소드가서 테스트해보자.
         return number1 + number2;
     }
 }
