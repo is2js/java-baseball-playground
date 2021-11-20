@@ -2,6 +2,7 @@ package baseball;
 
 import baseball.domain.Judgement;
 import baseball.domain.NumberGenerator;
+import baseball.domain.Referee;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,20 +15,11 @@ import java.util.List;
  */
 public class Application {
     public static void main(String[] args) {
-//        NumberGenerator generator = new NumberGenerator();
-//        List<Integer> numbers = generator.createRandomNumbers();
-//        System.out.println(numbers); // [4, 7, 7]
-
-        Judgement judgement = new Judgement();
-//        // -> 파라미터로 List를 넣는 방법은 Arrays.asList( , ,, );형태로 만든다.
-//        int correctCount = judgement.correctCount(Arrays.asList(1, 5, 3), Arrays.asList(1, 2, 3));
-//        System.out.println(correctCount);
-
-        //4.test: placeIndex자리에 있는게 number냐??
-        boolean place = judgement.hasPlace(Arrays.asList(1, 2, 3), 0, 1);
-        System.out.println(place);
-        boolean place2 = judgement.hasPlace(Arrays.asList(1, 2, 3), 1, 1);
-        System.out.println(place2); // 5. readme 체크후 commit하기
+        // 6. 테스트
+        Referee referee = new Referee();
+        String result = referee.compare(Arrays.asList(1, 2, 3), Arrays.asList(3, 1, 2));
+        System.out.println(result);
+        // -> 0 볼 3 스트라이크 -> 7. 가서 고치기(나중에)
 
     }
 }
