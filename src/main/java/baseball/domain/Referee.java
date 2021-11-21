@@ -6,7 +6,6 @@ public class Referee {
     public String compare(List<Integer> computer, List<Integer> player) {
         Judgement judgement = new Judgement();
         int correctCount = judgement.correctCount(computer, player);
-        //1. 깜빡한 낫싱 구현
         if (correctCount==0) {
             return "낫싱";
         }

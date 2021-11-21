@@ -15,8 +15,14 @@ import java.util.List;
  */
 public class Application {
     public static void main(String[] args) {
+        // 1. 이제 남은 것은 [구현완료된 기능을 각 인스턴스에게 수행]시키고 -> [종합]이 남았다.
         Referee referee = new Referee();
-        String result = referee.compare(Arrays.asList(1, 2, 3), Arrays.asList(4, 5, 6));
+        // 2. 심판은 필요해서 그대로 두고, 예제로 준 computer 수를 하드코딩이 아니라 <NumberGenerator#createRandomNumbers()>로 생성하도록 한다.
+//        new NumberGenerator();
+        NumberGenerator generator = new NumberGenerator();
+        List<Integer> computer = generator.createRandomNumbers();
+        // 3. 서다수 3개 computer를 심판에게 준다.
+        String result = referee.compare(computer, Arrays.asList(4, 5, 6));
         System.out.println(result);
     }
 }
