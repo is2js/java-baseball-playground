@@ -20,45 +20,36 @@ public class Application {
         Referee referee = new Referee();
         NumberGenerator generator = new NumberGenerator();
         List<Integer> computer = generator.createRandomNumbers();
-        // 1. 이제 우리가 수를 주는 것은 input을 받아야한다. - > readme -> 아닌 github참고
-        // 원본 readme를 보고 input받는 창을 간단하게 구현해본다.
-        //      ## 실행 결과
-        //      숫자를 입력해 주세요 : 123
-        //      1볼 1스트라이크
-        // -> 일단, 여기서 메소드로 구현해버린다. -> 2.
-        
-        // 4. 테스트
-        List<Integer> players = askNumbers();
-        System.out.println(players);
+//        List<Integer> players = askNumbers();
 
+        //1. 이제 result가 (0볼) 3스트라이크  나올때까지 계속 게임 한다.
+        // -> while문이 필요하다.
+        // --> 업데이트되는 조건변수? while문 들어가기 전에, 미리 초기화 해두자.
+        // --> 매번 초기화하면 변수 생성비용 & 값이 초기화되면 안됨. 업데이트되어야하면 변수를 위로 빼자.
+        // my) while문에 들어갈 놈들이 변수, 객체 생성하고 있으면 -> 미리 while문 위에 빼놓고 업데이트 되도록하자.
+//        String result = referee.compare(computer, players);
+        String result = "";
+        // my) "0 볼 3 스트라이크" 나오기직전까지 -> !( equals
+        while (!(result.equals("0 볼 3 스트라이크"))) {
+            //2. 뭐야.. 매번 새롭게 물어봐야하므로.. aksNumbers()를 호출하는 과정도 while문 안으로..
+            List<Integer> players = askNumbers();
+            result = referee.compare(computer, players);
 
-        String result = referee.compare(computer, Arrays.asList(4, 5, 6));
-        System.out.println(result);
-    }
-    // 2. input창을 만든다. 사용자에게 물어볼 땐 ask로 시작한다.
-    // -> 결과값이 있나? 사용자입력은 입력받을 값이 결과값으로서 return되어야한다.
-    // -> 입력값 ==결과값 ==메소드 return타입 -> List를 사용자에게 ask해서 결과값으로 반환할 것이다.
-    // --> static메소드인 main에서 바로 사용할거라.. static으로 선언해준다. (타클래스의 인스턴스라면 static메소드 안에서 작동해도 상관없다..)
-    public static List<Integer> askNumbers() {
-        //3. 
-//        new Scanner();
-        Scanner scanner = new Scanner(System.in);
-        // 연속된 문자열을 받았다면 -> 문자열을 1글자씩 돌면서 담아야한다.
-        System.out.println("숫자 3개를 입력해주세요. ex> 123");
-        String input = scanner.nextLine();
-        // 문자열을 1개씩 쪼개는 기능을 모르겠다면.. 자동완성에서 확인해봐야할듯..
-//        input.
-        // ""로 split하면 될듯싶다? -> 담아줄 List<Integer>를 생성하고, split("")로 돌아서 담아보자.
-        List<Integer> numbers = new ArrayList<>();
-        // java도 python처럼 쉽게할 수 있는데 classic하게 하는 중.
-        // -> for문에서 향상된for문( forEach문?)을 써보자.
-        for ( String num : input.split("")) {
-            //cf) valueOf 는 결국 parseInt 를 호출하는 형태이지만, 기본자료형 int가 아니라 객체 Integer라고 한다.
-            //문자열을 변환할 때 객체로 받아서 사용하느냐, 기본 자료형으로 받아서 사용하느냐의 차이다
-            //-> 두 메소드 중에 어느 것을 사용할지는 사용의 용도에 맞게 사용하면 되겠다. 기본 int 가 필요하면 parseInt() , Integer 래퍼 객체가 필요하면 valueOf() 를 사용하면 된다.
-            numbers.add(Integer.valueOf(num));
+            //3. 돌면서 매번 판별결과를 보여줘야한다.
+            System.out.println(result);
         }
 
+
+
+    }
+    public static List<Integer> askNumbers() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("숫자 3개를 입력해주세요. ex> 123");
+        String input = scanner.nextLine();
+        List<Integer> numbers = new ArrayList<>();
+        for ( String num : input.split("")) {
+            numbers.add(Integer.valueOf(num));
+        }
         return numbers;
     }
 }
